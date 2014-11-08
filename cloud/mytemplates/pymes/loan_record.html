@@ -1,0 +1,25 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rango</title>
+    </head>
+    <body>
+        <h1>{{ loantype_ltype }}</h1>
+        {% if loantype %}
+            {% if clients %}
+            <ul>
+                {% for client in clients %}
+                <li><a href="{{ client.idnumber }}">{{ client.number }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+                <strong>No clients currently in category.</strong>
+            {% endif %}
+        {% else %}
+            The specified Loan {{ loantype_ltype }} does not exist!
+        {% endif %}
+    </body>
+</html>
+{% endblock %}

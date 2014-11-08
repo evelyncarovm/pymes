@@ -1,0 +1,10 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<h1>Lista de elementos</h1>
+<ul>
+{% for loantype in loantype_list %}
+<li>{{ loantype.ltype }}</li>
+{% endfor %}
+</ul>
+{% endblock %}

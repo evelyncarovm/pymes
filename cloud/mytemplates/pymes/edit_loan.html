@@ -1,0 +1,13 @@
+{% extends "admin/base_site.html" %}
+
+{% block content %}
+<form action="/pymes/{{action}}/" method="post" enctype="multipart/form-data">
+   {% csrf_token %}
+
+   Loan Type:
+    <input name=loantype_ltype value="{{ ltype }}"><br />
+    Rate:
+    <input name=loantype_rate value="{{ rate }}"><br />
+    <input type=submit value="{{ button }}">
+</form>
+{% endblock %}

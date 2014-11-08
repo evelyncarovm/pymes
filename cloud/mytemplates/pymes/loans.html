@@ -1,0 +1,24 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+
+{% if is_authenticated %}
+    {% csrf_token %}
+<h1>Pymes administration says... hello {{ user.firstname }}!</h1>
+<h2>Remember your costumers' site http://elb-webserver04-1842889749.us-west-2.elb.amazonaws.com/pymes/loan_req/{{ user.pk }}</h2>
+<a href="/pymes/logout/">Logout</a><br /><br /><br />
+<ul>
+{% for l in user.loantype %}
+<li>{{ l }}  <a href='/pymes/update/{{ l }}'>Edit</a> <a href='/pymes/delete/{{ l }}'>Delete</a></li>
+{% endfor %}
+</ul>
+<a href="/pymes/add_loan/">Add new loan types</a><br /><br />
+<a href="/pymes/client_records">See Client's Records</a><br /><br />
+{% else %} 
+<h1>Pymes administration says... hello you are not authenticated</h1>
+{{ request.COOKIES }}
+{{ request }}
+{{ is_authenticated }}
+<a href="/pymes/register/">Register Here</a><br /><br />
+<a href="/pymes/login/">Login</a><br />
+{% endif %}
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+
+<h1>info enviada: {{ data }} </h1>
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Is anyone getting tired of repeatedly entering the header over and over?? -->
+        <title>Pymes Administration</title>
+    </head>
+
+    <body>
+        <h1>Login to Pymes Administration</h1>
+
+        <form id="login_form" method="post" action="/pymes/login/">
+            {% csrf_token %}
+            Username: <input type="text" name="username" value="" size="50" />
+            <br />
+            Password: <input type="password" name="password" value="" size="50" />
+            <br />
+
+            <input type="submit" value="submit" />
+        </form>
+
+    </body>
+</html>
+{% endblock %}

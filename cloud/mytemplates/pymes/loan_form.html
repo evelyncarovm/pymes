@@ -1,0 +1,12 @@
+{% extends "admin/base_site.html" %}
+
+{% block title %}{{object}}{% endblock %}
+
+{% block content %}
+<table>
+<tr><th>Fisrt name:</th><td>{{object.first_name}}</td></tr>
+<tr><th>Loan:</th><td><a href="{{object.loantype.get_absolute_url}}">{{object.loantype}}</a></td></tr>
+<tr><th>Proximity:</th><td>{{object.last_name}}</td></tr>
+<tr><th>Email:</th><td>{{object.email}}</td></tr>
+</table>
+{% endblock %}

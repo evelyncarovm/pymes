@@ -1,0 +1,41 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+
+{% if is_authenticated %}
+            {% csrf_token %}
+<h1>Client list from {{ user.firstname }}!</h1>
+<a href="/pymes/logout/">Logout</a><br /><br /><br />
+<form action="/pymes/{{action}}/" method="post" enctype="multipart/form-data">
+<table border="1">
+<tr>
+<td>Id Client</td>
+<td>Birthdate</td>
+<td>Loan Amount</td>
+<td>Loan Period</td>
+<td>Loan Purpose</td>
+<td>Status</td>
+<td>Risk</td>
+<td>Created</td>
+<td>Modified</td>
+</tr>
+{% for da in data %}
+<tr> {% for d in da %}
+{% if forloop.first %}  
+    <td><a href='/pymes/detail_records/{{ d }}'> {{ d }} </a></td>
+{% else %}
+<td>{{ d }}</td> 
+{% endif %}
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+</form>
+<br /><br />
+<a href="/pymes/login">Back</a><br/>
+<a href="/pymes/client_records">See Client's Records</a><br /><br />
+{% else %} 
+<h1>Pymes administration says... hello you are not authenticated</h1>
+<a href="/pymes/register/">Register Here</a><br /><br />
+<a href="/pymes/login/">Login</a><br />
+{% endif %}
+{% endblock %}

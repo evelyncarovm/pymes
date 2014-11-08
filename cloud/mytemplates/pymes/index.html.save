@@ -1,0 +1,17 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+<h1>Pymes administration says... hello {{ user.first_name }}!</h1>
+<a href="/pymes/logout/">Logout</a><br />
+<ul>
+{% for loantype in latest_loantype_list %}
+<li>{{ loantype.ltype }} 		{{ loantype.rate }}<a href='/pymes/edit_loan/{{loantype.idloan}href='/pymes/edit_loan/{{loantype.idloan}}'}'>Edit</a><a>Delete</a> </li>
+{% endfor %}
+</ul>
+<a href="/pymes/add_loan/">Add new loan types</a><br />
+{% else %}
+<h1>Pymes administration says... hello you are not authenticated</h1>
+<a href="/pymes/register/">Register Here</a><br />
+<a href="/pymes/login/">Login</a><br />
+{% endif %}
+{% endblock %}

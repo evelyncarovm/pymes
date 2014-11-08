@@ -1,0 +1,44 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+            {% csrf_token %}
+<h1>Client list from {{ user.first_name }}!</h1>
+<a href="/pymes/logout/">Logout</a><br /><br /><br />
+
+<table border="1">
+<tr>
+<td>Id Client</td>
+<td>Id Number</td>
+<td>Birthdate</td>
+<td>Loan Amount</td>
+<td>Loan Period</td>
+<td>Loan Purpose</td>
+<td>Status</td>
+<td>Risk</td>
+<td>Created</td>
+<td>Modified</td>
+</tr>
+{% for client in latest_client_list %}
+<tr>
+<td>{{ client.idclient }}</td>
+<td>{{ client.idnumber }}</td>
+<td>{{client.birthdate}}</td>
+<td>{{client.loanamount}}</td>
+<td>{{client.loanperiod}}</td>
+<td>{{client.loanpurpose}}</td>
+<td>{{client.status}}</td>
+<td>{{client.risk}}</td>
+<td>{{client.created}}</td>
+<td>{{client.modified}}</td>
+<td><a href='/pymes/det/{{client_details.idclient}}'>Details</a></td>
+</tr>
+{% endfor %}
+</table>
+<a href="/pymes/loans">Back</a><br/>
+<a href="/pymes/client_records">See Client's Records</a><br /><br />
+{% else %} 
+<h1>Pymes administration says... hello you are not authenticated</h1>
+<a href="/pymes/register/">Register Here</a><br /><br />
+<a href="/pymes/login/">Login</a><br />
+{% endif %}
+{% endblock %}

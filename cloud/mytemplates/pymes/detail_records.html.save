@@ -1,0 +1,40 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+{% if user.is_authenticated %}
+            {% csrf_token %}
+<h1>Detail from client {{ client.idclient }}!</h1>
+<a href="/pymes/logout/">Logout</a><br /><br /><br />
+
+<table border="1">
+<tr>
+<td>Id Loan</td>
+<td>Id Client</td>
+<td>Loan Quote</td>
+<td>Payment</td>
+<td>Interest</td>
+<td>Principal</td>
+<td>Balance</td>
+<td>Amortized Amount</td>
+</tr>
+<tr>
+<td>{{ idloan }}</td>
+<td>{{ idclient_id }}</td>
+<td>{{client.birthdate}}</td>
+<td>{{client.loanamount}}</td>
+<td>{{client.loanperiod}}</td>
+<td>{{client.loanpurpose}}</td>
+<td>{{client.status}}</td>
+<td>{{client.risk}}</td>
+<td>{{client.created}}</td>
+<td>{{client.modified}}</td>
+<td><a href='/pymes/edit_loan/{{client_details.idclient}}'>Details</a></td>
+</tr>
+</table>
+<a href="/pymes/loans">Back</a><br/>
+<a href="/pymes/client_records">See Client's Records</a><br /><br />
+{% else %} 
+<h1>Pymes administration says... hello you are not authenticated</h1>
+<a href="/pymes/register/">Register Here</a><br /><br />
+<a href="/pymes/login/">Login</a><br />
+{% endif %}
+{% endblock %}

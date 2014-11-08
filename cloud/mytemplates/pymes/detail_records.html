@@ -1,0 +1,67 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+
+{% if is_authenticated %}
+            {% csrf_token %}
+<h1>Detail from client {{ data.idclient }}!</h1>
+<a href="/pymes/logout/">Logout</a><br /><br /><br />
+<h2> Client's Summary </h2><br />
+<table border="2">
+<tr>
+<td>Client ID.</td>
+<td>Birthdate</td>
+<td>Loan Purpose</td>
+<td>Loan Ammount</td>
+<td>Loan Period</td>
+<td>Rate</td>
+<td>Risk</td>
+<td>Status</td>
+<td>Created Date</td>
+<td>Modified Date</td>
+</tr>
+
+<tr>
+<td>{{ data.idclient }}</td>
+<td>{{ data.birthdate }}</td>
+<td>{{ data.loanpurpose }}</td>
+<td>{{ data.loanamount }}</td>
+<td>{{ data.loanperiod }}</td>
+<td>{{ data.loanrate }}</td>
+<td>{{ data.risk }}</td>
+<td>{{ data.status }}</td>
+<td>{{ data.created }}</td>
+<td>{{ data.modified }}</td>
+</tr>
+
+</table>
+<br /><br />
+
+<h2> Detailed Client's Report </h2><br />
+
+<table border="1">
+<tr>
+<td>Loan Quote</td>
+<td>Payment</td>
+<td>Interest</td>
+<td>Principal</td>
+<td>Balance</td>
+<td>Amortized Amount</td>
+</tr>
+{% for re in records %}
+<tr>
+{% for r in re %}
+<td>{{ r }}</td> 
+{% endfor %}
+</tr>
+{% endfor %}
+</table>
+<br /><br />
+
+<a href="/pymes/login">Back</a><br/>
+<a href="/pymes/client_records">See Client's Records</a><br /><br />
+{% else %} 
+<h1>Pymes administration says... hello you are not authenticated</h1>
+<a href="/pymes/register/">Register Here</a><br /><br />
+<a href="/pymes/login/">Login</a><br />
+{% endif %}
+{% endblock %}

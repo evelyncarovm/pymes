@@ -1,0 +1,37 @@
+{% extends "admin/base_site.html" %}
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Loan Management</title>
+    </head>
+
+    <body>
+        <h1>Add Loans</h1>
+
+		{% if created %}
+        pymes says: <strong> Your Loan Services have been updated </strong>
+        <a href="/pymes/loans">Return to the homepage.</a><br />
+
+
+        {% else %}
+		<br />
+		<h2>Add new loan type</h2>
+
+        <form id="form" method="post" action="/pymes/add_loan/"
+                enctype="multipart/form-data">
+
+            {% csrf_token %}
+
+		    <table>
+		        {{ form.as_table }}
+		    </table>
+
+            <input type="submit" name="submit" value="Add Loan" />
+        </form>
+        {% endif %}
+
+    </body>
+</html>
+{% endblock %}

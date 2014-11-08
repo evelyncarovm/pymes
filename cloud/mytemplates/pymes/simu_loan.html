@@ -1,0 +1,12 @@
+<h1>{{ LoanType.idadmin }}</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'pymes:client_form' Loantype.id %}" method="post">
+{% csrf_token %}
+{% for idclient in idloantype.idclient_set.all %}
+    <input type="radio" name="idclient" id="idclient{{ forloop.counter }}" value="{{ idclient.id }}" />
+    <label for="idclient{{ forloop.counter }}">{{ idclient.idclient_text }}</label><br />
+{% endfor %}
+<input type="submit" value="Clienloan" />
+</form>
